@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center">ADD</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+        <ion-label fixed>Picture</ion-label>
+        <ion-avatar item-end>
+          <img *ngIf="imageURL == ''" src="../../assets/imgs/avatar.jpg" (click)="takePhoto()">
+          <img *ngIf="imageURL != ''" [src]="imageURL" (click)="takePhoto()">
+        </ion-avatar>
+      </ion-item>
+
+  <ion-item>
+    <ion-label>Name: </ion-label>
+    <ion-input type="text" [(ngModel)]="item.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Quantity: </ion-label>
+    <ion-input type="text" [(ngModel)]="item.quantity"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Expiry Date: </ion-label>
+    <ion-datetime displayFormat="MMM DD YYYY" [min]="minDate" [max]="maxDate" [(ngModel)]="item.expiryDate"></ion-datetime>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label>End Time: </ion-label>
+    <ion-datetime [disabled]="item.expiryDate == ''" displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="item.expiryTime"></ion-datetime>
+  </ion-item>
+
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button (click)="addItem(item.name, item.quantity, item.expiryDate, item.expiryTime)" small>Add Item</button>
+      <button ion-button small (click)="list()">List</button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
